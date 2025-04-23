@@ -20,9 +20,28 @@ app.use("*", loggerMiddleware());
 // Mount API with version prefix
 app.route(`/api/${config.apiVersion}`, api);
 
+// Update OpenAPI document to include audience-specific routes
+const updatedOpenApiDoc = {
+  ...openAPIDocument,
+  info: {
+    ...openAPIDocument.info,
+    description: `
+API documentation for the Keli application
+
+## API Structure
+- Public endpoints: available to all users
+- Admin endpoints: /api/v1/admin/* - available only to admin users
+- Customer endpoints: /api/v1/customer/* - available for mobile app customers
+- POS endpoints: /api/v1/pos/* - available for in-store Point of Sale systems
+
+Each endpoint is tagged with "Admin", "Customer", "POS", or a combination to indicate intended audience.
+    `,
+  },
+};
+
 // Serve OpenAPI schema
 app.get("/api/openapi.json", (c) => {
-  return c.json(openAPIDocument);
+  return c.json(updatedOpenApiDoc);
 });
 
 // Add ReDoc UI
