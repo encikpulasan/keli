@@ -1,0 +1,19 @@
+{
+  "imports": {
+    "@hono/swagger-ui": "npm:@hono/swagger-ui@^0.5.1",
+    "@hono/zod-openapi": "npm:@hono/zod-openapi@^0.19.5",
+    "@kitsonk/kv-toolbox": "jsr:@kitsonk/kv-toolbox@^0.27.4",
+    "@std/crypto": "jsr:@std/crypto@^1.0.4",
+    "@std/uuid": "jsr:@std/uuid@^1.0.6",
+    "hono": "jsr:@hono/hono@^4.7.5",
+    "jose": "npm:jose@^6.0.10",
+    "zod": "npm:zod@^3.24.3"
+  },
+  "tasks": {
+    "start": "deno run --allow-env --allow-net --unstable-kv main.ts"
+  },
+  "compilerOptions": {
+    "jsx": "precompile",
+    "jsxImportSource": "hono/jsx"
+  }
+}
