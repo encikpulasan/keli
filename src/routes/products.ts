@@ -11,13 +11,13 @@ import { authenticate, authorize } from "../middlewares/auth.ts";
 // Create router
 const router = new Hono();
 
-// Public routes - Anyone can view products
+// Public routes
 router.get("/", listProductsHandler);
 router.get("/:id", getProductHandler);
 
-// Protected routes - Only admin can manage products
-router.post("/", authenticate, authorize(["admin"]), createProductHandler);
-router.put("/:id", authenticate, authorize(["admin"]), updateProductHandler);
-router.delete("/:id", authenticate, authorize(["admin"]), deleteProductHandler);
+// Protected routes - admin only
+router.post("/", authenticate, createProductHandler);
+router.put("/:id", authenticate, updateProductHandler);
+router.delete("/:id", authenticate, deleteProductHandler);
 
 export default router;

@@ -17,6 +17,25 @@ import {
 } from "../utils/response.ts";
 import { ForbiddenError, NotFoundError } from "../utils/error.ts";
 import { getOrderById } from "../services/order-service.ts";
+import { z } from "npm:zod";
+
+// Payment schema
+const PaymentSchema = z.object({
+  orderId: z.string(),
+  paymentMethod: z.enum([
+    "credit_card",
+    "debit_card",
+    "mobile_payment",
+    "points",
+  ]),
+  amount: z.number().positive(),
+  cardDetails: z.object({
+    cardNumber: z.string(),
+    expiryMonth: z.string(),
+    expiryYear: z.string(),
+    cvv: z.string(),
+  }).optional(),
+});
 
 // Create a new payment
 export async function createPaymentHandler(c: Context) {
@@ -172,4 +191,51 @@ export async function paymentWebhookHandler(c: Context) {
 
   // Return success response
   return successResponse(c, { received: true });
+}
+
+// Process payment
+export async function processPaymentHandler(c: Context) {
+  const data = await c.req.json();
+  const validatedData = validate(PaymentSchema, data);
+
+  // In a real implementation, this would connect to a payment processor
+  // For now, we'll simulate a successful payment
+
+  const paymentId = crypto.randomUUID();
+  const now = new Date().toISOString();
+
+  const payment = {
+    paymentId,
+    status: "success",
+    orderId: validatedData.orderId,
+    amount: validatedData.amount,
+    currency: "USD",
+    timestamp: now,
+  };
+
+  return successResponse(c, payment);
+}
+
+// Process in-store payment (POS)
+export async function processInStorePaymentHandler(c: Context) {
+  const data = await c.req.json();
+  const validatedData = validate(PaymentSchema, data);
+
+  // In a real implementation, this would connect to an in-store payment processor
+  // For now, we'll simulate a successful payment
+
+  const paymentId = crypto.randomUUID();
+  const now = new Date().toISOString();
+
+  const payment = {
+    paymentId,
+    status: "success",
+    orderId: validatedData.orderId,
+    amount: validatedData.amount,
+    currency: "USD",
+    timestamp: now,
+    receiptUrl: `https://example.com/receipts/${paymentId}`,
+  };
+
+  return successResponse(c, payment);
 }

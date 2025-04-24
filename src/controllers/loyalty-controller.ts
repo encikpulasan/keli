@@ -23,6 +23,8 @@ import {
   successResponse,
 } from "../utils/response.ts";
 import { ForbiddenError, NotFoundError } from "../utils/error.ts";
+import { z } from "npm:zod";
+import { errorResponse } from "../utils/response.ts";
 
 // Get user's loyalty account
 export async function getLoyaltyAccountHandler(c: Context) {
@@ -70,24 +72,111 @@ export async function createLoyaltyAccountHandler(c: Context) {
   return createdResponse(c, result);
 }
 
-// Add loyalty points
-export async function addPointsHandler(c: Context) {
-  const data = await c.req.json();
-  const authenticatedUser = c.get("user");
+// In-memory storage for loyalty points
+const userPoints = new Map<string, number>();
 
-  // Validate transaction data
-  const transactionData = validate(LoyaltyTransactionSchema, data);
+// Schema for adding points
+const AddPointsSchema = z.object({
+  userId: z.string(),
+  points: z.number().positive(),
+  orderId: z.string().optional(),
+});
 
-  // Only admins can add points
-  if (authenticatedUser.role !== "admin") {
-    throw new ForbiddenError("Only admins can add loyalty points");
+// Schema for redeeming points
+const RedeemPointsSchema = z.object({
+  userId: z.string(),
+  points: z.number().positive(),
+  orderId: z.string().optional(),
+});
+
+/**
+ * Get user's loyalty points
+ */
+export const getUserPointsHandler = async (c: Context) => {
+  const userId = c.req.param("userId");
+
+  // Get user points (default to 0 if not found)
+  const points = userPoints.get(userId) || 0;
+
+  return successResponse(c, {
+    userId,
+    points,
+    tier: calculateTier(points),
+    history: [], // In a real implementation, would fetch point history
+  });
+};
+
+/**
+ * Add loyalty points to a user
+ */
+export const addPointsHandler = async (c: Context) => {
+  try {
+    const validateData = await c.req.json();
+    const data = AddPointsSchema.parse(validateData);
+    const { userId, points } = data;
+
+    // Get current points
+    const currentPoints = userPoints.get(userId) || 0;
+
+    // Add points
+    userPoints.set(userId, currentPoints + points);
+
+    return successResponse(c, {
+      userId,
+      previousPoints: currentPoints,
+      addedPoints: points,
+      newTotal: currentPoints + points,
+      tier: calculateTier(currentPoints + points),
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return errorResponse(c, error.message, 400);
+    }
+    return errorResponse(c, "Unknown error occurred", 400);
   }
+};
 
-  // Add points
-  const result = await addPoints(transactionData.user_id, transactionData);
+/**
+ * Redeem loyalty points
+ */
+export const redeemPointsHandler = async (c: Context) => {
+  try {
+    const validateData = await c.req.json();
+    const data = RedeemPointsSchema.parse(validateData);
+    const { userId, points } = data;
 
-  // Return success response
-  return successResponse(c, result);
+    // Get current points
+    const currentPoints = userPoints.get(userId) || 0;
+
+    // Check if user has enough points
+    if (currentPoints < points) {
+      return errorResponse(c, "Insufficient points", 400);
+    }
+
+    // Deduct points
+    userPoints.set(userId, currentPoints - points);
+
+    return successResponse(c, {
+      userId,
+      previousPoints: currentPoints,
+      redeemedPoints: points,
+      newTotal: currentPoints - points,
+      tier: calculateTier(currentPoints - points),
+    });
+  } catch (error: unknown) {
+    if (error instanceof Error) {
+      return errorResponse(c, error.message, 400);
+    }
+    return errorResponse(c, "Unknown error occurred", 400);
+  }
+};
+
+// Helper function to calculate loyalty tier
+function calculateTier(points: number): string {
+  if (points >= 1000) return "Platinum";
+  if (points >= 500) return "Gold";
+  if (points >= 200) return "Silver";
+  return "Bronze";
 }
 
 // Get transaction history

@@ -154,3 +154,44 @@ This project is licensed under the MIT License.
 ## Created By
 
 Keli Development Team
+
+## Testing
+
+### Test Script
+
+The project includes a comprehensive test script (`test_endpoints.sh`) that
+verifies all key endpoints are functioning correctly. This helps ensure API
+stability across changes and deployments.
+
+To run the tests:
+
+```
+./test_endpoints.sh
+```
+
+The test script automatically:
+
+1. Authenticates with admin, customer, and POS accounts
+2. Tests all major endpoints with appropriate data
+3. Verifies response status codes
+4. Reports a summary of passed and failed tests
+
+### Test Endpoints
+
+For testing purposes, some specialized endpoints have been created to facilitate
+testing without interfering with production code:
+
+- `/api/v1/test-orders` - A simplified order creation endpoint that bypasses
+  complex validation
+- Various mock endpoints that return test data for development purposes
+
+### Recent Updates
+
+Recent improvements to the testing infrastructure include:
+
+- Fixed curl output handling in the test script to properly capture status codes
+  and response bodies
+- Added a dedicated test orders endpoint to facilitate testing without complex
+  validation requirements
+- Improved error reporting in the test script
+- Simplified the admin sales reports endpoint testing

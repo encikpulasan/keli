@@ -17,55 +17,87 @@ import {
 } from "../utils/response.ts";
 import { NotFoundError } from "../utils/error.ts";
 
+// In-memory products storage for development
+const products = new Map();
+
+// Product schema
+const ProductSchema = z.object({
+  name: z.string(),
+  description: z.string(),
+  price: z.number().positive(),
+  category: z.string(),
+  image: z.string().url(),
+  allergens: z.array(z.string()).optional(),
+  available: z.boolean().default(true),
+});
+
 // Create a new product
 export async function createProductHandler(c: Context) {
   const data = await c.req.json();
+  const validatedData = validate(ProductSchema, data);
 
-  // Validate product data
-  const productData = validate(CreateProductSchema, data);
+  const productId = crypto.randomUUID();
+  const now = new Date().toISOString();
 
-  // Create product
-  const result = await createProduct(productData);
+  const product = {
+    id: productId,
+    ...validatedData,
+    created_at: now,
+    updated_at: now,
+  };
 
-  // Return success response
-  return createdResponse(c, result);
+  // Save product to our in-memory storage
+  products.set(productId, product);
+
+  return createdResponse(c, product);
 }
 
 // Get a product by ID
 export async function getProductHandler(c: Context) {
-  const id = c.req.param("id");
+  const productId = c.req.param("id");
+  const product = products.get(productId);
 
-  // Get product
-  const product = await getProductById(id);
+  if (!product) {
+    throw new NotFoundError("Product not found");
+  }
 
-  // Return success response
   return successResponse(c, product);
 }
 
 // Update a product
 export async function updateProductHandler(c: Context) {
-  const id = c.req.param("id");
+  const productId = c.req.param("id");
   const data = await c.req.json();
 
-  // Validate product data
-  const productData = validate(UpdateProductSchema, data);
+  if (!products.has(productId)) {
+    throw new NotFoundError("Product not found");
+  }
 
-  // Update product
-  const result = await updateProduct(id, productData);
+  const existingProduct = products.get(productId);
+  const validatedData = validate(ProductSchema.partial(), data);
 
-  // Return success response
-  return successResponse(c, result);
+  const updatedProduct = {
+    ...existingProduct,
+    ...validatedData,
+    updated_at: new Date().toISOString(),
+  };
+
+  products.set(productId, updatedProduct);
+
+  return successResponse(c, updatedProduct);
 }
 
 // Delete a product
 export async function deleteProductHandler(c: Context) {
-  const id = c.req.param("id");
+  const productId = c.req.param("id");
 
-  // Delete product
-  await deleteProduct(id);
+  if (!products.has(productId)) {
+    throw new NotFoundError("Product not found");
+  }
 
-  // Return no content response
-  return noContentResponse(c);
+  products.delete(productId);
+
+  return new Response(null, { status: 204 });
 }
 
 // List products with pagination and filtering

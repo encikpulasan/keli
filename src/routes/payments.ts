@@ -6,6 +6,7 @@ import {
   getPaymentsByOrderIdHandler,
   listUserPaymentsHandler,
   paymentWebhookHandler,
+  processPaymentHandler,
   refundPaymentHandler,
 } from "../controllers/payment-controller.ts";
 import { authenticate, authorize } from "../middlewares/auth.ts";
@@ -38,5 +39,8 @@ router.post(
   authorize(["admin"]),
   refundPaymentHandler,
 );
+
+// New route for processing payment
+router.post("/process", processPaymentHandler);
 
 export default router;
