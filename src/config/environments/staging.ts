@@ -14,4 +14,9 @@ export default {
     expiresIn: "1d",
   },
   logLevel: "info",
+  // Default admin user for staging environment
+  defaultAdmin: {
+    email: "admin@staging.keli.com",
+    password: "staging_admin123",
+  },
 };

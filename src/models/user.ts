@@ -15,18 +15,20 @@ export const UserSchema = z.object({
   last_login: z.string().datetime().optional(),
   referral_code: z.string().optional(),
   preferences: z.record(z.unknown()).optional(),
+  role: z.enum(["user", "admin", "staff"]).default("user"),
 });
 
 // Define the CreateUser schema (used for validation when creating a user)
-export const CreateUserSchema = UserSchema.omit({
-  id: true,
-  created_at: true,
-  updated_at: true,
-  last_login: true,
-  account_status: true,
-}).extend({
+export const CreateUserSchema = z.object({
+  email: z.string().email(),
   password: z.string().min(8),
   confirm_password: z.string().min(8),
+  first_name: z.string(),
+  last_name: z.string(),
+  phone_number: z.string().optional(),
+  date_of_birth: z.string().optional(),
+  referral_code: z.string().optional(),
+  preferences: z.record(z.unknown()).optional(),
 }).refine((data) => data.password === data.confirm_password, {
   message: "Passwords don't match",
   path: ["confirm_password"],

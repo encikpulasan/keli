@@ -4,13 +4,36 @@ import productionConfig from "./environments/production.ts";
 
 type Environment = "development" | "staging" | "production";
 
+// Define the config interface
+export interface Config {
+  env: string;
+  port: number;
+  apiVersion: string;
+  cors: {
+    allowOrigin: string | string[];
+    allowMethods: string[];
+    allowHeaders: string[];
+    exposeHeaders: string[];
+    maxAge: number;
+  };
+  jwt: {
+    secret: string;
+    expiresIn: string;
+  };
+  logLevel: string;
+  defaultAdmin?: {
+    email: string;
+    password: string;
+  };
+}
+
 const env = (Deno.env.get("NODE_ENV") || "development") as Environment;
 
 // Configuration map by environment
-const configMap = {
-  development: developmentConfig,
-  staging: stagingConfig,
-  production: productionConfig,
+const configMap: Record<Environment, Config> = {
+  development: developmentConfig as Config,
+  staging: stagingConfig as Config,
+  production: productionConfig as Config,
 };
 
 // Get the configuration for the current environment

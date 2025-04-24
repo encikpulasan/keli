@@ -8,6 +8,7 @@ import logger from "./src/utils/logger.ts";
 import api from "./src/routes/index.ts";
 import { getRedocHTML } from "./src/utils/redoc.ts";
 import { openAPIDocument } from "./src/utils/openapi.ts";
+import { initializeDefaultAdmin } from "./src/utils/init-admin.ts";
 
 // Create main app
 const app = new Hono();
@@ -52,6 +53,9 @@ app.get("/", (c) => c.redirect(`/api/${config.apiVersion}/health`));
 
 // Start server
 const port = config.port;
+
+// Initialize the default admin user
+await initializeDefaultAdmin();
 
 logger.info(
   `Starting ZAS Coffee API server in ${config.env} mode on port ${port}`,

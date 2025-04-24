@@ -15,4 +15,9 @@ export default {
     expiresIn: "1d",
   },
   logLevel: "warn",
+  // Default admin user for production environment - uses environment variables for security
+  defaultAdmin: {
+    email: Deno.env.get("DEFAULT_ADMIN_EMAIL") || "admin@keli.com",
+    password: Deno.env.get("DEFAULT_ADMIN_PASSWORD") || "change_in_production",
+  },
 };

@@ -7,7 +7,10 @@ import { v4 } from "jsr:@std/uuid";
 const COLLECTION = "users";
 
 // Create a new user
-export async function createUser(userData: CreateUser): Promise<User> {
+export async function createUser(
+  userData: CreateUser,
+  role: string = "user",
+): Promise<User> {
   const userEmail = userData.email.toLowerCase();
 
   // Check if user with this email already exists
@@ -45,6 +48,7 @@ export async function createUser(userData: CreateUser): Promise<User> {
     last_login: undefined,
     referral_code: userData.referral_code || generateReferralCode(userId),
     preferences: userData.preferences || {},
+    role: role as "user" | "staff" | "admin",
   };
 
   // Save to database

@@ -14,4 +14,9 @@ export default {
     expiresIn: "1d",
   },
   logLevel: "debug",
+  // Default admin user for development environment
+  defaultAdmin: {
+    email: "admin@keli.com",
+    password: "admin123",
+  },
 };
