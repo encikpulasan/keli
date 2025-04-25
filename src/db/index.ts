@@ -1,5 +1,14 @@
+// Get KV path from environment variables or use in-memory database
+const kvPath = Deno.env.get("KV_PATH") || ":memory:";
+
 // Initialize DenoKV
-export const kv = await Deno.openKv(Deno.env.get("KV_PATH"));
+export const kv = await Deno.openKv(kvPath);
+
+console.log(
+  `Connected to DenoKV at ${
+    kvPath === ":memory:" ? "in-memory database" : kvPath
+  }`,
+);
 
 // Helper function to create collection keys
 export function createKey(collection: string, id: string): string[] {

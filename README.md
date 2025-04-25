@@ -82,6 +82,18 @@ keli/
 - `deno task start` - Start the application
 - `deno task dev` - Start the application with watch mode
 - `deno task test` - Run tests
+- `deno task env [environment]` - Run the application with environment-specific
+  configurations
+  - Available environments: `dev`, `staging`, `prod`
+  - Examples:
+    - `deno task env dev` - Run with development configuration
+    - `deno task env staging` - Run with staging configuration
+    - `deno task env prod` - Run with production configuration
+- `deno task start:dev` - Start the application with development configuration
+- `deno task start:staging` - Start the application with staging configuration
+- `deno task start:prod` - Start the application with production configuration
+- `deno task dev:dev` - Start the application in watch mode with development
+  configuration
 
 ## API Structure
 
@@ -146,6 +158,55 @@ The API uses JWT-based authentication with different token types:
 - POS tokens - For in-store staff
 
 Each token contains appropriate role claims and access permissions.
+
+## API Keys
+
+All API endpoints require a valid API key to be included in the request header.
+The API key should be provided in the `X-API-Key` header.
+
+### Example Request:
+
+```bash
+curl -X GET "http://localhost:3000/api/v1/health" \
+     -H "X-API-Key: keliapi-default-development-key-2023"
+```
+
+### Default API Key
+
+For development, the system uses the API key defined in your `.env` file. The
+current default API key is:
+
+```
+API_KEY="keliapi-default-development-key-2023"
+```
+
+In production environments, you should generate and manage secure API keys for
+your clients.
+
+### API Key Management
+
+The API provides endpoints for managing API keys under `/api/v1/api-keys`. These
+endpoints allow you to:
+
+- Create new API keys
+- List existing API keys
+- Update API keys
+- Delete API keys
+
+Note: API key management endpoints require admin authentication in addition to a
+valid API key.
+
+#### API Key Endpoints
+
+- `GET /api/v1/api-keys` - List all API keys (admin only)
+- `POST /api/v1/api-keys` - Create a new API key (admin only)
+- `GET /api/v1/api-keys/:id` - Get API key details (admin only)
+- `PUT /api/v1/api-keys/:id` - Update an API key (admin only)
+- `DELETE /api/v1/api-keys/:id` - Delete an API key (admin only)
+
+#### Environment Variables
+
+- `API_KEY`: Default API key to use if none is provided in request headers
 
 ## License
 

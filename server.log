@@ -1,0 +1,475 @@
+Task start deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv main.ts
+Connected to DenoKV at in-memory database
+[2025-04-24T10:07:46.849Z] [INFO] Default admin user created: admin@keli.com
+Default API key initialized: keliapi-default-development-key-2023
+[2025-04-24T10:07:46.851Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+Listening on http://0.0.0.0:8000/
+[2025-04-24T10:07:46.853Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-24T10:07:46.853Z] [INFO] API Documentation available at http://localhost:8000/docs
+<-- GET /api/v1/health
+<-- GET /api/v1/health
+[2025-04-24T10:07:54.854Z] [INFO] Request started - {"requestId":"f1e54b43-3978-4fd5-8e44-989135cc2bc9","method":"GET","url":"http://localhost:8000/api/v1/health"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:54.858Z] [INFO] Request completed - {"requestId":"f1e54b43-3978-4fd5-8e44-989135cc2bc9","method":"GET","url":"http://localhost:8000/api/v1/health","status":200,"responseTime":"4ms"}
+--> GET /api/v1/health [32m200[0m 4ms
+--> GET /api/v1/health [32m200[0m 7ms
+<-- POST /api/v1/auth/login
+<-- POST /api/v1/auth/login
+[2025-04-24T10:07:54.883Z] [INFO] Request started - {"requestId":"181ac35a-92b2-4a9a-aebc-cf61a9c9b3b5","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:54.890Z] [INFO] Request completed - {"requestId":"181ac35a-92b2-4a9a-aebc-cf61a9c9b3b5","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":200,"responseTime":"7ms"}
+--> POST /api/v1/auth/login [32m200[0m 7ms
+--> POST /api/v1/auth/login [32m200[0m 8ms
+<-- POST /api/v1/auth/login
+<-- POST /api/v1/auth/login
+[2025-04-24T10:07:54.913Z] [INFO] Request started - {"requestId":"9983787a-3ede-42bc-a319-ab79c1c53c84","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+UnauthorizedError: Invalid email or password
+    at login (file:///Users/azlanshah/JS Repositories/sofehaus/keli/src/services/auth-service.ts:40:11)
+    at eventLoopTick (ext:core/01_core.js:178:7)
+    at async loginHandler (file:///Users/azlanshah/JS Repositories/sofehaus/keli/src/controllers/auth-controller.ts:31:18)
+    at async dispatch (https://jsr.io/@hono/hono/4.7.7/src/compose.ts:51:17)
+    at async file:///Users/azlanshah/JS Repositories/sofehaus/keli/src/middlewares/api-key.ts:102:5
+    at async dispatch (https://jsr.io/@hono/hono/4.7.7/src/compose.ts:51:17)
+    at async validateApiKey (file:///Users/azlanshah/JS Repositories/sofehaus/keli/src/middlewares/api-key.ts:92:5)
+    at async dispatch (https://jsr.io/@hono/hono/4.7.7/src/compose.ts:51:17)
+    at async errorHandler (file:///Users/azlanshah/JS Repositories/sofehaus/keli/src/middlewares/error-handler.ts:15:5)
+    at async dispatch (https://jsr.io/@hono/hono/4.7.7/src/compose.ts:51:17) {
+  statusCode: 401,
+  name: "UnauthorizedError"
+}
+[2025-04-24T10:07:54.920Z] [INFO] Request completed - {"requestId":"9983787a-3ede-42bc-a319-ab79c1c53c84","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":500,"responseTime":"7ms"}
+--> POST /api/v1/auth/login [31m500[0m 7ms
+--> POST /api/v1/auth/login [31m500[0m 7ms
+<-- POST /api/v1/auth/register
+<-- POST /api/v1/auth/register
+[2025-04-24T10:07:54.942Z] [INFO] Request started - {"requestId":"2063403a-9e52-4385-bbc1-476ba2807892","method":"POST","url":"http://localhost:8000/api/v1/auth/register"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:54.945Z] [INFO] Request completed - {"requestId":"2063403a-9e52-4385-bbc1-476ba2807892","method":"POST","url":"http://localhost:8000/api/v1/auth/register","status":201,"responseTime":"3ms"}
+--> POST /api/v1/auth/register [32m201[0m 3ms
+--> POST /api/v1/auth/register [32m201[0m 3ms
+<-- POST /api/v1/auth/login
+<-- POST /api/v1/auth/login
+[2025-04-24T10:07:54.961Z] [INFO] Request started - {"requestId":"032818c5-bace-4cb2-b36d-8ce65d4572c5","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:54.963Z] [INFO] Request completed - {"requestId":"032818c5-bace-4cb2-b36d-8ce65d4572c5","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":200,"responseTime":"2ms"}
+--> POST /api/v1/auth/login [32m200[0m 2ms
+--> POST /api/v1/auth/login [32m200[0m 2ms
+<-- POST /api/v1/pos/auth/login
+<-- POST /api/v1/pos/auth/login
+[2025-04-24T10:07:54.987Z] [INFO] Request started - {"requestId":"60892549-a52a-4caa-86cc-78356fff5e42","method":"POST","url":"http://localhost:8000/api/v1/pos/auth/login"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:54.989Z] [INFO] Request completed - {"requestId":"60892549-a52a-4caa-86cc-78356fff5e42","method":"POST","url":"http://localhost:8000/api/v1/pos/auth/login","status":200,"responseTime":"2ms"}
+--> POST /api/v1/pos/auth/login [32m200[0m 2ms
+--> POST /api/v1/pos/auth/login [32m200[0m 2ms
+<-- GET /api/v1/products
+<-- GET /api/v1/products
+[2025-04-24T10:07:55.012Z] [INFO] Request started - {"requestId":"176127a6-3c06-4c41-a238-2d62701accf5","method":"GET","url":"http://localhost:8000/api/v1/products"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.014Z] [INFO] Request completed - {"requestId":"176127a6-3c06-4c41-a238-2d62701accf5","method":"GET","url":"http://localhost:8000/api/v1/products","status":200,"responseTime":"2ms"}
+--> GET /api/v1/products [32m200[0m 2ms
+--> GET /api/v1/products [32m200[0m 2ms
+<-- POST /api/v1/products
+<-- POST /api/v1/products
+[2025-04-24T10:07:55.036Z] [INFO] Request started - {"requestId":"5cb0c4a7-b24d-4676-b5ef-9d4493364557","method":"POST","url":"http://localhost:8000/api/v1/products"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.040Z] [INFO] Request completed - {"requestId":"5cb0c4a7-b24d-4676-b5ef-9d4493364557","method":"POST","url":"http://localhost:8000/api/v1/products","status":201,"responseTime":"4ms"}
+--> POST /api/v1/products [32m201[0m 4ms
+--> POST /api/v1/products [32m201[0m 4ms
+<-- POST /api/v1/products
+<-- POST /api/v1/products
+[2025-04-24T10:07:55.059Z] [INFO] Request started - {"requestId":"08186db7-c573-44fc-93b9-3d449801bb7a","method":"POST","url":"http://localhost:8000/api/v1/products"}
+API Key header: not provided
+Using default API key: kelia...
+[2025-04-24T10:07:55.060Z] [INFO] Request completed - {"requestId":"08186db7-c573-44fc-93b9-3d449801bb7a","method":"POST","url":"http://localhost:8000/api/v1/products","status":201,"responseTime":"1ms"}
+--> POST /api/v1/products [32m201[0m 1ms
+--> POST /api/v1/products [32m201[0m 1ms
+<-- GET /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+<-- GET /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+[2025-04-24T10:07:55.084Z] [INFO] Request started - {"requestId":"ded52923-ff4d-40d5-bede-22443cc981dd","method":"GET","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.085Z] [INFO] Request completed - {"requestId":"ded52923-ff4d-40d5-bede-22443cc981dd","method":"GET","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3","status":200,"responseTime":"1ms"}
+--> GET /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m200[0m 2ms
+--> GET /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m200[0m 2ms
+<-- PUT /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+<-- PUT /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+[2025-04-24T10:07:55.109Z] [INFO] Request started - {"requestId":"627cddef-5d4d-4f61-8b27-a9e069b09a38","method":"PUT","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.111Z] [INFO] Request completed - {"requestId":"627cddef-5d4d-4f61-8b27-a9e069b09a38","method":"PUT","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3","status":200,"responseTime":"2ms"}
+--> PUT /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m200[0m 2ms
+--> PUT /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m200[0m 2ms
+<-- DELETE /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+<-- DELETE /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3
+[2025-04-24T10:07:55.132Z] [INFO] Request started - {"requestId":"5ee19692-fd7c-4cad-8b39-68818e4c35e8","method":"DELETE","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.133Z] [INFO] Request completed - {"requestId":"5ee19692-fd7c-4cad-8b39-68818e4c35e8","method":"DELETE","url":"http://localhost:8000/api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3","status":204,"responseTime":"1ms"}
+--> DELETE /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m204[0m 1ms
+--> DELETE /api/v1/products/354b52d4-de98-4933-8d0f-a3d65ec6fce3 [32m204[0m 1ms
+<-- GET /api/v1/orders
+<-- GET /api/v1/orders
+[2025-04-24T10:07:55.154Z] [INFO] Request started - {"requestId":"6d5f02b5-be18-48a2-abab-ff93ea85d6d8","method":"GET","url":"http://localhost:8000/api/v1/orders"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.156Z] [INFO] Request completed - {"requestId":"6d5f02b5-be18-48a2-abab-ff93ea85d6d8","method":"GET","url":"http://localhost:8000/api/v1/orders","status":200,"responseTime":"2ms"}
+--> GET /api/v1/orders [32m200[0m 2ms
+--> GET /api/v1/orders [32m200[0m 2ms
+<-- GET /api/v1/orders
+<-- GET /api/v1/orders
+[2025-04-24T10:07:55.180Z] [INFO] Request started - {"requestId":"98d0d7f1-cd64-4bb8-a422-122b4930ee61","method":"GET","url":"http://localhost:8000/api/v1/orders"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.181Z] [INFO] Request completed - {"requestId":"98d0d7f1-cd64-4bb8-a422-122b4930ee61","method":"GET","url":"http://localhost:8000/api/v1/orders","status":200,"responseTime":"1ms"}
+--> GET /api/v1/orders [32m200[0m 1ms
+--> GET /api/v1/orders [32m200[0m 1ms
+<-- POST /api/v1/test-orders
+<-- POST /api/v1/test-orders
+[2025-04-24T10:07:55.205Z] [INFO] Request started - {"requestId":"cec3f33c-aec7-4c05-a4a6-3b748dd0426b","method":"POST","url":"http://localhost:8000/api/v1/test-orders"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.207Z] [INFO] Request completed - {"requestId":"cec3f33c-aec7-4c05-a4a6-3b748dd0426b","method":"POST","url":"http://localhost:8000/api/v1/test-orders","status":201,"responseTime":"2ms"}
+--> POST /api/v1/test-orders [32m201[0m 2ms
+--> POST /api/v1/test-orders [32m201[0m 3ms
+<-- GET /api/v1/stores
+<-- GET /api/v1/stores
+[2025-04-24T10:07:55.230Z] [INFO] Request started - {"requestId":"584c1eff-cdfa-477e-9067-9edb1b296aa5","method":"GET","url":"http://localhost:8000/api/v1/stores"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.231Z] [INFO] Request completed - {"requestId":"584c1eff-cdfa-477e-9067-9edb1b296aa5","method":"GET","url":"http://localhost:8000/api/v1/stores","status":200,"responseTime":"1ms"}
+--> GET /api/v1/stores [32m200[0m 2ms
+--> GET /api/v1/stores [32m200[0m 2ms
+<-- POST /api/v1/payments/process
+<-- POST /api/v1/payments/process
+[2025-04-24T10:07:55.256Z] [INFO] Request started - {"requestId":"772eba25-46ca-4751-9bc0-a9ca15f8abff","method":"POST","url":"http://localhost:8000/api/v1/payments/process"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.259Z] [INFO] Request completed - {"requestId":"772eba25-46ca-4751-9bc0-a9ca15f8abff","method":"POST","url":"http://localhost:8000/api/v1/payments/process","status":200,"responseTime":"3ms"}
+--> POST /api/v1/payments/process [32m200[0m 3ms
+--> POST /api/v1/payments/process [32m200[0m 3ms
+<-- POST /api/v1/pos/payments/process
+<-- POST /api/v1/pos/payments/process
+[2025-04-24T10:07:55.282Z] [INFO] Request started - {"requestId":"36d71135-bf53-464f-888b-9fb106f4e772","method":"POST","url":"http://localhost:8000/api/v1/pos/payments/process"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.284Z] [INFO] Request completed - {"requestId":"36d71135-bf53-464f-888b-9fb106f4e772","method":"POST","url":"http://localhost:8000/api/v1/pos/payments/process","status":200,"responseTime":"2ms"}
+--> POST /api/v1/pos/payments/process [32m200[0m 2ms
+--> POST /api/v1/pos/payments/process [32m200[0m 2ms
+<-- GET /api/v1/loyalty/points
+<-- GET /api/v1/loyalty/points
+[2025-04-24T10:07:55.308Z] [INFO] Request started - {"requestId":"fb1bc8af-b777-4c5b-a476-b8d908f9e73a","method":"GET","url":"http://localhost:8000/api/v1/loyalty/points"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.309Z] [INFO] Request completed - {"requestId":"fb1bc8af-b777-4c5b-a476-b8d908f9e73a","method":"GET","url":"http://localhost:8000/api/v1/loyalty/points","status":200,"responseTime":"1ms"}
+--> GET /api/v1/loyalty/points [32m200[0m 1ms
+--> GET /api/v1/loyalty/points [32m200[0m 1ms
+<-- GET /api/v1/promotions/current
+<-- GET /api/v1/promotions/current
+[2025-04-24T10:07:55.332Z] [INFO] Request started - {"requestId":"a3e7bffb-914b-452a-b0e9-b84dff74487e","method":"GET","url":"http://localhost:8000/api/v1/promotions/current"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.333Z] [INFO] Request completed - {"requestId":"a3e7bffb-914b-452a-b0e9-b84dff74487e","method":"GET","url":"http://localhost:8000/api/v1/promotions/current","status":200,"responseTime":"1ms"}
+--> GET /api/v1/promotions/current [32m200[0m 1ms
+--> GET /api/v1/promotions/current [32m200[0m 1ms
+<-- POST /api/v1/pos/promotions/apply
+<-- POST /api/v1/pos/promotions/apply
+[2025-04-24T10:07:55.358Z] [INFO] Request started - {"requestId":"940617a2-91ab-4370-a845-665366566aa7","method":"POST","url":"http://localhost:8000/api/v1/pos/promotions/apply"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.360Z] [INFO] Request completed - {"requestId":"940617a2-91ab-4370-a845-665366566aa7","method":"POST","url":"http://localhost:8000/api/v1/pos/promotions/apply","status":200,"responseTime":"2ms"}
+--> POST /api/v1/pos/promotions/apply [32m200[0m 2ms
+--> POST /api/v1/pos/promotions/apply [32m200[0m 2ms
+<-- GET /api/v1/admin/dashboard
+<-- GET /api/v1/admin/dashboard
+[2025-04-24T10:07:55.381Z] [INFO] Request started - {"requestId":"d3962f85-6458-4c5b-8738-bc77001940ed","method":"GET","url":"http://localhost:8000/api/v1/admin/dashboard"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.382Z] [INFO] Request completed - {"requestId":"d3962f85-6458-4c5b-8738-bc77001940ed","method":"GET","url":"http://localhost:8000/api/v1/admin/dashboard","status":200,"responseTime":"1ms"}
+--> GET /api/v1/admin/dashboard [32m200[0m 1ms
+--> GET /api/v1/admin/dashboard [32m200[0m 1ms
+<-- GET /api/v1/admin/users
+<-- GET /api/v1/admin/users
+[2025-04-24T10:07:55.406Z] [INFO] Request started - {"requestId":"1409339d-cc18-488a-bb88-f78d69af8404","method":"GET","url":"http://localhost:8000/api/v1/admin/users"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.408Z] [INFO] Request completed - {"requestId":"1409339d-cc18-488a-bb88-f78d69af8404","method":"GET","url":"http://localhost:8000/api/v1/admin/users","status":200,"responseTime":"2ms"}
+--> GET /api/v1/admin/users [32m200[0m 2ms
+--> GET /api/v1/admin/users [32m200[0m 2ms
+<-- GET /api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day
+<-- GET /api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day
+[2025-04-24T10:07:55.431Z] [INFO] Request started - {"requestId":"b865d186-8650-4ff0-b3bb-0c29902b5b74","method":"GET","url":"http://localhost:8000/api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day"}
+API Key header: not provided
+Using default API key: kelia...
+[2025-04-24T10:07:55.432Z] [INFO] Request completed - {"requestId":"b865d186-8650-4ff0-b3bb-0c29902b5b74","method":"GET","url":"http://localhost:8000/api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day","status":200,"responseTime":"1ms"}
+--> GET /api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day [32m200[0m 1ms
+--> GET /api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day [32m200[0m 1ms
+<-- GET /api/v1/customer/profile
+<-- GET /api/v1/customer/profile
+[2025-04-24T10:07:55.453Z] [INFO] Request started - {"requestId":"cdeb8b02-421e-4c92-9e6e-d0a639e1bb12","method":"GET","url":"http://localhost:8000/api/v1/customer/profile"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.454Z] [INFO] Request completed - {"requestId":"cdeb8b02-421e-4c92-9e6e-d0a639e1bb12","method":"GET","url":"http://localhost:8000/api/v1/customer/profile","status":200,"responseTime":"1ms"}
+--> GET /api/v1/customer/profile [32m200[0m 1ms
+--> GET /api/v1/customer/profile [32m200[0m 1ms
+<-- PUT /api/v1/customer/profile
+<-- PUT /api/v1/customer/profile
+[2025-04-24T10:07:55.481Z] [INFO] Request started - {"requestId":"e1b78c51-8df7-4cbb-8935-a35eb5975cb0","method":"PUT","url":"http://localhost:8000/api/v1/customer/profile"}
+API Key header: keliapi-default-development-key-2023
+Validating API key: kelia...
+API key found in database (ID: 0c9831b2-9899-4bd0-9b25-2a2b8f8cf5d5)
+API key validation successful
+[2025-04-24T10:07:55.481Z] [INFO] Request completed - {"requestId":"e1b78c51-8df7-4cbb-8935-a35eb5975cb0","method":"PUT","url":"http://localhost:8000/api/v1/customer/profile","status":200,"responseTime":"0ms"}
+--> PUT /api/v1/customer/profile [32m200[0m 1ms
+--> PUT /api/v1/customer/profile [32m200[0m 1ms
+[2025-04-25T11:48:00.096Z] [INFO] Default admin user created: admin@example.com
+[2025-04-25T11:48:00.098Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:48:00.099Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:48:00.099Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:48:00.099Z] [INFO] Current Environment: development
+[2025-04-25T11:48:00.100Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:48:00.100Z] [INFO] env: development
+[2025-04-25T11:48:00.100Z] [INFO] port: 8000
+[2025-04-25T11:48:00.100Z] [INFO] apiVersion: v1
+[2025-04-25T11:48:00.100Z] [INFO] cors:
+[2025-04-25T11:48:00.101Z] [INFO]   allowOrigin: https://app.zascoffee.com
+[2025-04-25T11:48:00.101Z] [INFO]   allowMethods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+[2025-04-25T11:48:00.101Z] [INFO]   allowHeaders: Content-Type,Authorization,Accept,X-API-Key
+[2025-04-25T11:48:00.101Z] [INFO]   exposeHeaders: Content-Length,Date,X-Request-Id
+[2025-04-25T11:48:00.101Z] [INFO]   maxAge: 86400
+[2025-04-25T11:48:00.101Z] [INFO] jwt:
+[2025-04-25T11:48:00.102Z] [INFO]   secret: 192a670cf12241be8b0c1ad6b0c149e9
+[2025-04-25T11:48:00.102Z] [INFO]   expiresIn: 24h
+[2025-04-25T11:48:00.102Z] [INFO] apiKey:
+[2025-04-25T11:48:00.102Z] [INFO]   defaultKey: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:48:00.102Z] [INFO]   headerName: X-API-Key
+[2025-04-25T11:48:00.103Z] [INFO]   requireApiKey: true
+[2025-04-25T11:48:00.103Z] [INFO]   trackUsage: true
+[2025-04-25T11:48:00.103Z] [INFO] logLevel: debug
+[2025-04-25T11:48:00.103Z] [INFO] defaultAdmin:
+[2025-04-25T11:48:00.103Z] [INFO]   email: admin@example.com
+[2025-04-25T11:48:00.103Z] [INFO]   password: admin123
+[2025-04-25T11:49:05.044Z] [INFO] Default admin user already exists: admin@example.com
+[2025-04-25T11:49:05.045Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:49:05.048Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:49:05.048Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:49:05.048Z] [INFO] Current Environment: development
+[2025-04-25T11:49:05.048Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:05.049Z] [INFO] env: development
+[2025-04-25T11:49:05.049Z] [INFO] port: 8000
+[2025-04-25T11:49:05.049Z] [INFO] apiVersion: v1
+[2025-04-25T11:49:05.049Z] [DEBUG] cors:
+[2025-04-25T11:49:05.049Z] [INFO]   allowOrigin: https://app.zascoffee.com
+[2025-04-25T11:49:05.050Z] [INFO]   allowMethods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+[2025-04-25T11:49:05.050Z] [INFO]   allowHeaders: Content-Type,Authorization,Accept,X-API-Key
+[2025-04-25T11:49:05.050Z] [INFO]   exposeHeaders: Content-Length,Date,X-Request-Id
+[2025-04-25T11:49:05.050Z] [INFO]   maxAge: 86400
+[2025-04-25T11:49:05.050Z] [DEBUG] jwt:
+[2025-04-25T11:49:05.050Z] [INFO]   secret: 192a670cf12241be8b0c1ad6b0c149e9
+[2025-04-25T11:49:05.051Z] [INFO]   expiresIn: 24h
+[2025-04-25T11:49:05.051Z] [DEBUG] apiKey:
+[2025-04-25T11:49:05.051Z] [INFO]   defaultKey: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:05.051Z] [INFO]   headerName: X-API-Key
+[2025-04-25T11:49:05.051Z] [INFO]   requireApiKey: true
+[2025-04-25T11:49:05.051Z] [INFO]   trackUsage: true
+[2025-04-25T11:49:05.052Z] [INFO] logLevel: debug
+[2025-04-25T11:49:05.052Z] [DEBUG] defaultAdmin:
+[2025-04-25T11:49:05.052Z] [INFO]   email: admin@example.com
+[2025-04-25T11:49:05.052Z] [INFO]   password: admin123
+[2025-04-25T11:49:08.032Z] [INFO] Default admin user already exists: admin@example.com
+[2025-04-25T11:49:08.034Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:49:08.036Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:49:08.037Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:49:08.038Z] [INFO] Current Environment: development
+[2025-04-25T11:49:08.038Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:08.038Z] [INFO] env: development
+[2025-04-25T11:49:08.039Z] [INFO] port: 8000
+[2025-04-25T11:49:08.039Z] [INFO] apiVersion: v1
+[2025-04-25T11:49:08.039Z] [DEBUG] cors:
+[2025-04-25T11:49:08.877Z] [INFO] Default admin user already exists: admin@example.com
+[2025-04-25T11:49:08.878Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:49:08.881Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:49:08.881Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:49:08.882Z] [INFO] Current Environment: development
+[2025-04-25T11:49:08.882Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:08.883Z] [INFO] env: development
+[2025-04-25T11:49:08.884Z] [INFO] port: 8000
+[2025-04-25T11:49:08.885Z] [INFO] apiVersion: v1
+[2025-04-25T11:49:08.886Z] [DEBUG] cors:
+[2025-04-25T11:49:08.886Z] [DEBUG]   allowOrigin: https://app.zascoffee.com
+[2025-04-25T11:49:08.887Z] [DEBUG]   allowMethods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+[2025-04-25T11:49:08.887Z] [DEBUG]   allowHeaders: Content-Type,Authorization,Accept,X-API-Key
+[2025-04-25T11:49:08.889Z] [DEBUG]   exposeHeaders: Content-Length,Date,X-Request-Id
+[2025-04-25T11:49:08.889Z] [DEBUG]   maxAge: 86400
+[2025-04-25T11:49:08.889Z] [DEBUG] jwt:
+[2025-04-25T11:49:08.894Z] [DEBUG]   secret: 192a670cf12241be8b0c1ad6b0c149e9
+[2025-04-25T11:49:08.894Z] [DEBUG]   expiresIn: 24h
+[2025-04-25T11:49:08.894Z] [DEBUG] apiKey:
+[2025-04-25T11:49:08.896Z] [DEBUG]   defaultKey: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:08.896Z] [DEBUG]   headerName: X-API-Key
+[2025-04-25T11:49:08.897Z] [DEBUG]   requireApiKey: true
+[2025-04-25T11:49:08.897Z] [DEBUG]   trackUsage: true
+[2025-04-25T11:49:08.900Z] [INFO] logLevel: debug
+[2025-04-25T11:49:08.902Z] [DEBUG] defaultAdmin:
+[2025-04-25T11:49:08.905Z] [DEBUG]   email: admin@example.com
+[2025-04-25T11:49:08.907Z] [DEBUG]   password: admin123
+[2025-04-25T11:49:11.379Z] [INFO] Default admin user already exists: admin@example.com
+[2025-04-25T11:49:11.380Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:49:11.381Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:49:11.382Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:49:11.382Z] [INFO] Current Environment: development
+[2025-04-25T11:49:11.382Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:11.382Z] [DEBUG] env: development
+[2025-04-25T11:49:11.382Z] [DEBUG] port: 8000
+[2025-04-25T11:49:11.383Z] [DEBUG] apiVersion: v1
+[2025-04-25T11:49:11.383Z] [DEBUG] cors:
+[2025-04-25T11:49:11.383Z] [DEBUG]   allowOrigin: https://app.zascoffee.com
+[2025-04-25T11:49:11.383Z] [DEBUG]   allowMethods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+[2025-04-25T11:49:11.383Z] [DEBUG]   allowHeaders: Content-Type,Authorization,Accept,X-API-Key
+[2025-04-25T11:49:11.383Z] [DEBUG]   exposeHeaders: Content-Length,Date,X-Request-Id
+[2025-04-25T11:49:11.384Z] [DEBUG]   maxAge: 86400
+[2025-04-25T11:49:11.384Z] [DEBUG] jwt:
+[2025-04-25T11:49:11.384Z] [DEBUG]   secret: 192a670cf12241be8b0c1ad6b0c149e9
+[2025-04-25T11:49:11.384Z] [DEBUG]   expiresIn: 24h
+[2025-04-25T11:49:11.384Z] [DEBUG] apiKey:
+[2025-04-25T11:49:11.384Z] [DEBUG]   defaultKey: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:11.385Z] [DEBUG]   headerName: X-API-Key
+[2025-04-25T11:49:11.385Z] [DEBUG]   requireApiKey: true
+[2025-04-25T11:49:11.385Z] [DEBUG]   trackUsage: true
+[2025-04-25T11:49:11.385Z] [DEBUG] logLevel: debug
+[2025-04-25T11:49:11.385Z] [DEBUG] defaultAdmin:
+[2025-04-25T11:49:11.385Z] [DEBUG]   email: admin@example.com
+[2025-04-25T11:49:11.386Z] [DEBUG]   password: admin123
+[2025-04-25T11:49:45.420Z] [INFO] Default admin user created: admin@example.com
+[2025-04-25T11:49:45.422Z] [INFO] Starting ZAS Coffee API server in development mode on port 8000
+[2025-04-25T11:49:45.429Z] [INFO] ZAS Coffee API server is running on http://localhost:8000
+[2025-04-25T11:49:45.429Z] [INFO] API Documentation available at http://localhost:8000/docs
+[2025-04-25T11:49:45.429Z] [INFO] Current Environment: development
+[2025-04-25T11:49:45.429Z] [INFO] Default API Key: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:45.430Z] [DEBUG] env: development
+[2025-04-25T11:49:45.430Z] [DEBUG] port: 8000
+[2025-04-25T11:49:45.430Z] [DEBUG] apiVersion: v1
+[2025-04-25T11:49:45.430Z] [DEBUG] cors:
+[2025-04-25T11:49:45.430Z] [DEBUG]   allowOrigin: https://app.zascoffee.com
+[2025-04-25T11:49:45.430Z] [DEBUG]   allowMethods: GET,POST,PUT,DELETE,PATCH,OPTIONS
+[2025-04-25T11:49:45.431Z] [DEBUG]   allowHeaders: Content-Type,Authorization,Accept,X-API-Key
+[2025-04-25T11:49:45.431Z] [DEBUG]   exposeHeaders: Content-Length,Date,X-Request-Id
+[2025-04-25T11:49:45.431Z] [DEBUG]   maxAge: 86400
+[2025-04-25T11:49:45.431Z] [DEBUG] jwt:
+[2025-04-25T11:49:45.431Z] [DEBUG]   secret: 192a670cf12241be8b0c1ad6b0c149e9
+[2025-04-25T11:49:45.432Z] [DEBUG]   expiresIn: 24h
+[2025-04-25T11:49:45.432Z] [DEBUG] apiKey:
+[2025-04-25T11:49:45.432Z] [DEBUG]   defaultKey: 7b6acf9d51554ae4a480bd843a979942
+[2025-04-25T11:49:45.432Z] [DEBUG]   headerName: X-API-Key
+[2025-04-25T11:49:45.432Z] [DEBUG]   requireApiKey: true
+[2025-04-25T11:49:45.432Z] [DEBUG]   trackUsage: true
+[2025-04-25T11:49:45.433Z] [DEBUG] logLevel: debug
+[2025-04-25T11:49:45.433Z] [DEBUG] defaultAdmin:
+[2025-04-25T11:49:45.433Z] [DEBUG]   email: admin@example.com
+[2025-04-25T11:49:45.433Z] [DEBUG]   password: admin123
+[2025-04-25T11:49:50.693Z] [INFO] Request started - {"requestId":"bb984efa-dd0f-4503-9b0c-da72ee77d716","method":"GET","url":"http://localhost:8000/api/v1/health"}
+[2025-04-25T11:49:50.699Z] [INFO] Request completed - {"requestId":"bb984efa-dd0f-4503-9b0c-da72ee77d716","method":"GET","url":"http://localhost:8000/api/v1/health","status":200,"responseTime":"6ms"}
+[2025-04-25T11:49:50.727Z] [INFO] Request started - {"requestId":"417a4d73-cb41-47ad-bf8a-c087451cb60a","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+[2025-04-25T11:49:50.736Z] [INFO] Request completed - {"requestId":"417a4d73-cb41-47ad-bf8a-c087451cb60a","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":200,"responseTime":"9ms"}
+[2025-04-25T11:49:50.766Z] [INFO] Request started - {"requestId":"e8f00b1f-af62-499b-ab79-0b3dab461c3b","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+[2025-04-25T11:49:50.774Z] [INFO] Request completed - {"requestId":"e8f00b1f-af62-499b-ab79-0b3dab461c3b","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":500,"responseTime":"8ms"}
+[2025-04-25T11:49:50.804Z] [INFO] Request started - {"requestId":"a7b709a8-b6e5-419e-ad2a-8ec247e86f33","method":"POST","url":"http://localhost:8000/api/v1/auth/register"}
+[2025-04-25T11:49:50.807Z] [INFO] Request completed - {"requestId":"a7b709a8-b6e5-419e-ad2a-8ec247e86f33","method":"POST","url":"http://localhost:8000/api/v1/auth/register","status":201,"responseTime":"3ms"}
+[2025-04-25T11:49:50.826Z] [INFO] Request started - {"requestId":"45121e3f-428b-48ed-b5ce-c67de5711c1f","method":"POST","url":"http://localhost:8000/api/v1/auth/login"}
+[2025-04-25T11:49:50.829Z] [INFO] Request completed - {"requestId":"45121e3f-428b-48ed-b5ce-c67de5711c1f","method":"POST","url":"http://localhost:8000/api/v1/auth/login","status":200,"responseTime":"3ms"}
+[2025-04-25T11:49:50.854Z] [INFO] Request started - {"requestId":"f8115c03-e875-41c9-aa39-75614f658579","method":"POST","url":"http://localhost:8000/api/v1/pos/auth/login"}
+[2025-04-25T11:49:50.856Z] [INFO] Request completed - {"requestId":"f8115c03-e875-41c9-aa39-75614f658579","method":"POST","url":"http://localhost:8000/api/v1/pos/auth/login","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:50.886Z] [INFO] Request started - {"requestId":"5f0b3121-f469-4d9c-adf7-9c81cf7f9ad3","method":"GET","url":"http://localhost:8000/api/v1/products"}
+[2025-04-25T11:49:50.889Z] [INFO] Request completed - {"requestId":"5f0b3121-f469-4d9c-adf7-9c81cf7f9ad3","method":"GET","url":"http://localhost:8000/api/v1/products","status":200,"responseTime":"3ms"}
+[2025-04-25T11:49:50.916Z] [INFO] Request started - {"requestId":"060a28cd-4798-4259-998c-ea192e8f5846","method":"POST","url":"http://localhost:8000/api/v1/products"}
+[2025-04-25T11:49:50.922Z] [INFO] Request completed - {"requestId":"060a28cd-4798-4259-998c-ea192e8f5846","method":"POST","url":"http://localhost:8000/api/v1/products","status":201,"responseTime":"6ms"}
+[2025-04-25T11:49:50.948Z] [INFO] Request started - {"requestId":"f4b69e52-e22d-431f-b529-cf506cac5c15","method":"POST","url":"http://localhost:8000/api/v1/products"}
+[2025-04-25T11:49:50.950Z] [INFO] Request completed - {"requestId":"f4b69e52-e22d-431f-b529-cf506cac5c15","method":"POST","url":"http://localhost:8000/api/v1/products","status":201,"responseTime":"2ms"}
+[2025-04-25T11:49:50.976Z] [INFO] Request started - {"requestId":"de59bcc5-6d28-456a-82c6-5e1b2aeaabec","method":"GET","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651"}
+[2025-04-25T11:49:50.977Z] [INFO] Request completed - {"requestId":"de59bcc5-6d28-456a-82c6-5e1b2aeaabec","method":"GET","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651","status":200,"responseTime":"1ms"}
+[2025-04-25T11:49:51.002Z] [INFO] Request started - {"requestId":"db4ac15b-3a57-477d-b177-82dc9035c37f","method":"PUT","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651"}
+[2025-04-25T11:49:51.004Z] [INFO] Request completed - {"requestId":"db4ac15b-3a57-477d-b177-82dc9035c37f","method":"PUT","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.028Z] [INFO] Request started - {"requestId":"032fa846-43c5-48b7-8bb1-b7c1492ddd70","method":"DELETE","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651"}
+[2025-04-25T11:49:51.030Z] [INFO] Request completed - {"requestId":"032fa846-43c5-48b7-8bb1-b7c1492ddd70","method":"DELETE","url":"http://localhost:8000/api/v1/products/8d768846-69ce-4d13-8a03-c2f585914651","status":204,"responseTime":"2ms"}
+[2025-04-25T11:49:51.055Z] [INFO] Request started - {"requestId":"a7047c5d-2c71-4697-b67e-ca02d433c35e","method":"GET","url":"http://localhost:8000/api/v1/orders"}
+[2025-04-25T11:49:51.058Z] [INFO] Request completed - {"requestId":"a7047c5d-2c71-4697-b67e-ca02d433c35e","method":"GET","url":"http://localhost:8000/api/v1/orders","status":200,"responseTime":"3ms"}
+[2025-04-25T11:49:51.081Z] [INFO] Request started - {"requestId":"6fb622a7-1069-4e76-98ff-d809b83b4ce9","method":"GET","url":"http://localhost:8000/api/v1/orders"}
+[2025-04-25T11:49:51.083Z] [INFO] Request completed - {"requestId":"6fb622a7-1069-4e76-98ff-d809b83b4ce9","method":"GET","url":"http://localhost:8000/api/v1/orders","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.105Z] [INFO] Request started - {"requestId":"bf173c1a-9e4b-475f-95c3-c896da5fa311","method":"POST","url":"http://localhost:8000/api/v1/test-orders"}
+[2025-04-25T11:49:51.107Z] [INFO] Request completed - {"requestId":"bf173c1a-9e4b-475f-95c3-c896da5fa311","method":"POST","url":"http://localhost:8000/api/v1/test-orders","status":201,"responseTime":"2ms"}
+[2025-04-25T11:49:51.130Z] [INFO] Request started - {"requestId":"a211e9d5-2811-4048-84f2-53b361577f1b","method":"GET","url":"http://localhost:8000/api/v1/stores"}
+[2025-04-25T11:49:51.132Z] [INFO] Request completed - {"requestId":"a211e9d5-2811-4048-84f2-53b361577f1b","method":"GET","url":"http://localhost:8000/api/v1/stores","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.155Z] [INFO] Request started - {"requestId":"5fd8c9e5-718b-4b91-be38-690e096c21a8","method":"POST","url":"http://localhost:8000/api/v1/payments/process"}
+[2025-04-25T11:49:51.157Z] [INFO] Request completed - {"requestId":"5fd8c9e5-718b-4b91-be38-690e096c21a8","method":"POST","url":"http://localhost:8000/api/v1/payments/process","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.187Z] [INFO] Request started - {"requestId":"d2881ec9-90f1-4c2a-b53b-0edd81dc74d6","method":"POST","url":"http://localhost:8000/api/v1/pos/payments/process"}
+[2025-04-25T11:49:51.189Z] [INFO] Request completed - {"requestId":"d2881ec9-90f1-4c2a-b53b-0edd81dc74d6","method":"POST","url":"http://localhost:8000/api/v1/pos/payments/process","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.213Z] [INFO] Request started - {"requestId":"904b2ee5-9391-40b2-9ee4-957ac45a0750","method":"GET","url":"http://localhost:8000/api/v1/loyalty/points"}
+[2025-04-25T11:49:51.215Z] [INFO] Request completed - {"requestId":"904b2ee5-9391-40b2-9ee4-957ac45a0750","method":"GET","url":"http://localhost:8000/api/v1/loyalty/points","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.239Z] [INFO] Request started - {"requestId":"dee66d47-ecb8-457a-a539-283f73ca062b","method":"GET","url":"http://localhost:8000/api/v1/promotions/current"}
+[2025-04-25T11:49:51.240Z] [INFO] Request completed - {"requestId":"dee66d47-ecb8-457a-a539-283f73ca062b","method":"GET","url":"http://localhost:8000/api/v1/promotions/current","status":200,"responseTime":"1ms"}
+[2025-04-25T11:49:51.265Z] [INFO] Request started - {"requestId":"5cd9c69c-947d-455e-8e0d-fbcb02c84ea4","method":"POST","url":"http://localhost:8000/api/v1/pos/promotions/apply"}
+[2025-04-25T11:49:51.267Z] [INFO] Request completed - {"requestId":"5cd9c69c-947d-455e-8e0d-fbcb02c84ea4","method":"POST","url":"http://localhost:8000/api/v1/pos/promotions/apply","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.290Z] [INFO] Request started - {"requestId":"5ec45eec-5c39-4681-86d5-1ea7407184e5","method":"GET","url":"http://localhost:8000/api/v1/admin/dashboard"}
+[2025-04-25T11:49:51.291Z] [INFO] Request completed - {"requestId":"5ec45eec-5c39-4681-86d5-1ea7407184e5","method":"GET","url":"http://localhost:8000/api/v1/admin/dashboard","status":200,"responseTime":"1ms"}
+[2025-04-25T11:49:51.317Z] [INFO] Request started - {"requestId":"2ed71ca1-821e-4b5f-8b86-a81436426386","method":"GET","url":"http://localhost:8000/api/v1/admin/users"}
+[2025-04-25T11:49:51.318Z] [INFO] Request completed - {"requestId":"2ed71ca1-821e-4b5f-8b86-a81436426386","method":"GET","url":"http://localhost:8000/api/v1/admin/users","status":200,"responseTime":"1ms"}
+[2025-04-25T11:49:51.343Z] [INFO] Request started - {"requestId":"52da3555-3b00-4008-b3ce-1894fea0a1fa","method":"GET","url":"http://localhost:8000/api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day"}
+[2025-04-25T11:49:51.344Z] [INFO] Request completed - {"requestId":"52da3555-3b00-4008-b3ce-1894fea0a1fa","method":"GET","url":"http://localhost:8000/api/v1/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day","status":200,"responseTime":"1ms"}
+[2025-04-25T11:49:51.368Z] [INFO] Request started - {"requestId":"8080cebc-934b-4b4f-8be9-89d80b26ea4b","method":"GET","url":"http://localhost:8000/api/v1/customer/profile"}
+[2025-04-25T11:49:51.370Z] [INFO] Request completed - {"requestId":"8080cebc-934b-4b4f-8be9-89d80b26ea4b","method":"GET","url":"http://localhost:8000/api/v1/customer/profile","status":200,"responseTime":"2ms"}
+[2025-04-25T11:49:51.398Z] [INFO] Request started - {"requestId":"5d92581c-0f3d-4e23-90f2-ceeec4a702a4","method":"PUT","url":"http://localhost:8000/api/v1/customer/profile"}
+[2025-04-25T11:49:51.401Z] [INFO] Request completed - {"requestId":"5d92581c-0f3d-4e23-90f2-ceeec4a702a4","method":"PUT","url":"http://localhost:8000/api/v1/customer/profile","status":200,"responseTime":"3ms"}

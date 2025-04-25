@@ -1,8 +1,9 @@
 #!/bin/bash
 # API Endpoint Test Script for Keli API in development environment
 
-BASE_URL="http://localhost:3000/api/v1"
-ADMIN_EMAIL="admin@keli.com"
+BASE_URL="http://localhost:8000/api/v1"
+API_KEY="7b6acf9d51554ae4a480bd843a979942"
+ADMIN_EMAIL="admin@example.com"
 ADMIN_PASSWORD="admin123"
 CUSTOMER_EMAIL="customer@example.com"
 CUSTOMER_PASSWORD="customer123"
@@ -34,6 +35,9 @@ test_endpoint() {
 
     # Build the curl command
     CURL_CMD="curl -s -X $method"
+
+    # Add API key header
+    CURL_CMD="$CURL_CMD -H \"X-API-Key: $API_KEY\""
 
     # Add auth header if provided
     if [ ! -z "$auth_header" ]; then
@@ -78,33 +82,55 @@ test_endpoint "GET" "$BASE_URL/health" "" "" "200" "Health check endpoint" || ((
 # 2. AUTHENTICATION ENDPOINTS
 # Admin login
 echo "Getting admin token..."
-ADMIN_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}" "$BASE_URL/auth/login")
+ADMIN_LOGIN_DATA="{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\"}"
+echo "Admin login data: $ADMIN_LOGIN_DATA"
+ADMIN_RESPONSE=$(curl -v -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "$ADMIN_LOGIN_DATA" "$BASE_URL/auth/login")
+echo "Admin login response: $ADMIN_RESPONSE"
 ADMIN_TOKEN=$(echo $ADMIN_RESPONSE | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
 
 if [ -z "$ADMIN_TOKEN" ]; then
     echo -e "${RED}Failed to get admin token${NC}"
-    echo "$ADMIN_RESPONSE"
-    # Try to register customer account since we couldn't login
-    echo "Registering customer account..."
-    CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\",\"confirm_password\":\"$CUSTOMER_PASSWORD\",\"first_name\":\"Test\",\"last_name\":\"Customer\"}" "$BASE_URL/auth/register")
-    echo "$CUSTOMER_RESPONSE"
+    echo "Try to create admin user first..."
+
+    # Try to create admin user
+    ADMIN_CREATE_DATA="{\"email\":\"$ADMIN_EMAIL\",\"password\":\"$ADMIN_PASSWORD\",\"confirm_password\":\"$ADMIN_PASSWORD\",\"first_name\":\"Admin\",\"last_name\":\"User\"}"
+    echo "Creating admin user with: $ADMIN_CREATE_DATA"
+    ADMIN_CREATE_RESPONSE=$(curl -v -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "$ADMIN_CREATE_DATA" "$BASE_URL/auth/register/admin")
+    echo "Admin creation response: $ADMIN_CREATE_RESPONSE"
+
+    # Try login again
+    echo "Trying admin login again..."
+    ADMIN_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "$ADMIN_LOGIN_DATA" "$BASE_URL/auth/login")
+    ADMIN_TOKEN=$(echo $ADMIN_RESPONSE | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
+
+    if [ -z "$ADMIN_TOKEN" ]; then
+        echo -e "${RED}Still couldn't get admin token${NC}"
+        echo "Full response: $ADMIN_RESPONSE"
+
+        # Try to register customer account since we couldn't login
+        echo "Registering customer account..."
+        CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\",\"confirm_password\":\"$CUSTOMER_PASSWORD\",\"first_name\":\"Test\",\"last_name\":\"Customer\"}" "$BASE_URL/auth/register")
+        echo "$CUSTOMER_RESPONSE"
+    else
+        echo -e "${GREEN}Admin token obtained after creating admin user${NC}"
+    fi
 else
     echo -e "${GREEN}Admin token obtained${NC}"
 fi
 
 # Login with customer credentials or register if needed
 echo "Getting customer token..."
-CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\"}" "$BASE_URL/auth/login")
+CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\"}" "$BASE_URL/auth/login")
 CUSTOMER_TOKEN=$(echo $CUSTOMER_RESPONSE | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
 
 if [ -z "$CUSTOMER_TOKEN" ]; then
     echo -e "${RED}Failed to login as customer, trying to register...${NC}"
     # Try to register
-    REGISTER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\",\"confirm_password\":\"$CUSTOMER_PASSWORD\",\"first_name\":\"Test\",\"last_name\":\"Customer\"}" "$BASE_URL/auth/register")
+    REGISTER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\",\"confirm_password\":\"$CUSTOMER_PASSWORD\",\"first_name\":\"Test\",\"last_name\":\"Customer\"}" "$BASE_URL/auth/register")
     echo "$REGISTER_RESPONSE"
 
     # Try login again
-    CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\"}" "$BASE_URL/auth/login")
+    CUSTOMER_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "{\"email\":\"$CUSTOMER_EMAIL\",\"password\":\"$CUSTOMER_PASSWORD\"}" "$BASE_URL/auth/login")
     CUSTOMER_TOKEN=$(echo $CUSTOMER_RESPONSE | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
 
     if [ -z "$CUSTOMER_TOKEN" ]; then
@@ -118,7 +144,7 @@ fi
 
 # POS login
 echo "Getting POS token..."
-POS_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -d "{\"email\":\"$POS_EMAIL\",\"password\":\"$POS_PASSWORD\",\"storeId\":\"$STORE_ID\"}" "$BASE_URL/pos/auth/login")
+POS_RESPONSE=$(curl -s -X POST -H "Content-Type: application/json" -H "X-API-Key: $API_KEY" -d "{\"email\":\"$POS_EMAIL\",\"password\":\"$POS_PASSWORD\",\"storeId\":\"$STORE_ID\"}" "$BASE_URL/pos/auth/login")
 POS_TOKEN=$(echo $POS_RESPONSE | grep -o '"token":"[^"]*' | grep -o '[^"]*$')
 
 if [ -z "$POS_TOKEN" ]; then
@@ -262,14 +288,14 @@ fi
 if [ ! -z "$ADMIN_TOKEN" ]; then
     test_endpoint "GET" "$BASE_URL/admin/dashboard" "$ADMIN_TOKEN" "" "200" "Admin dashboard statistics endpoint" || ((FAILURES++))
     test_endpoint "GET" "$BASE_URL/admin/users" "$ADMIN_TOKEN" "" "200" "Admin list users endpoint" || ((FAILURES++))
-    
+
     # Simplify admin reports test to avoid curl issues
     echo -e "${BLUE}Testing:${NC} Admin sales reports endpoint"
     echo -e "${BLUE}Request:${NC} GET $BASE_URL/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day"
-    
+
     # Simple curl without fancy output formatting
     report_response=$(curl -s -H "Authorization: Bearer $ADMIN_TOKEN" "$BASE_URL/admin/reports/sales?startDate=2023-01-01&endDate=2023-04-01&groupBy=day")
-    
+
     # Check if we got a valid response
     if [ ! -z "$report_response" ]; then
         echo -e "${GREEN}Success:${NC} Got sales report data"

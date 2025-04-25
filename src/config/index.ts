@@ -20,6 +20,12 @@ export interface Config {
     secret: string;
     expiresIn: string;
   };
+  apiKey: {
+    defaultKey: string;
+    headerName: string;
+    requireApiKey: boolean;
+    trackUsage: boolean;
+  };
   logLevel: string;
   defaultAdmin?: {
     email: string;

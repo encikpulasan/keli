@@ -8,6 +8,15 @@ export enum LogLevel {
   ERROR = 3,
 }
 
+// Define colors for log levels
+const colors = {
+  debug: "\x1b[36m", // Cyan
+  info: "\x1b[32m", // Green
+  warn: "\x1b[33m", // Yellow
+  error: "\x1b[31m", // Red
+  reset: "\x1b[0m", // Reset
+};
+
 // Map string log level to enum
 const logLevelMap: Record<string, LogLevel> = {
   "debug": LogLevel.DEBUG,
@@ -39,19 +48,31 @@ function log(
 ): void {
   if (level >= configuredLevel) {
     const formattedMessage = formatLogMessage(levelName, message, details);
+    const color = colors[levelName as keyof typeof colors] || colors.reset;
+
     switch (level) {
       case LogLevel.ERROR:
-        console.error(formattedMessage);
+        console.error(`${color}${formattedMessage}${colors.reset}`);
         break;
       case LogLevel.WARN:
-        console.warn(formattedMessage);
+        console.warn(`${color}${formattedMessage}${colors.reset}`);
         break;
       case LogLevel.INFO:
-        console.info(formattedMessage);
+        console.info(`${color}${formattedMessage}${colors.reset}`);
         break;
       case LogLevel.DEBUG:
-        console.debug(formattedMessage);
+        console.debug(`${color}${formattedMessage}${colors.reset}`);
         break;
+    }
+
+    // Also log to a file in development mode
+    if (config.env === "development") {
+      try {
+        const logEntry = `${formattedMessage}\n`;
+        Deno.writeTextFileSync("server.log", logEntry, { append: true });
+      } catch (error) {
+        console.error("Failed to write to log file:", error);
+      }
     }
   }
 }

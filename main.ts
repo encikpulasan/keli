@@ -9,6 +9,7 @@ import api from "./src/routes/index.ts";
 import { getRedocHTML } from "./src/utils/redoc.ts";
 import { openAPIDocument } from "./src/utils/openapi.ts";
 import { initializeDefaultAdmin } from "./src/utils/init-admin.ts";
+import { initializeDefaultApiKey } from "./src/services/api-key-service.ts";
 
 // Create main app
 const app = new Hono();
@@ -57,11 +58,29 @@ const port = config.port;
 // Initialize the default admin user
 await initializeDefaultAdmin();
 
+// Initialize the default API key from environment variable
+await initializeDefaultApiKey();
+
 logger.info(
   `Starting ZAS Coffee API server in ${config.env} mode on port ${port}`,
 );
 
-Deno.serve({ port }, app.fetch);
+Deno.serve({ port: Number(port) }, app.fetch);
 
 logger.info(`ZAS Coffee API server is running on http://localhost:${port}`);
 logger.info(`API Documentation available at http://localhost:${port}/docs`);
+logger.info(`Current Environment: ${config.env}`);
+logger.info(`Default API Key: ${config.apiKey.defaultKey}`);
+for (const key in config) {
+  if (typeof config[key as keyof typeof config] === "object") {
+    logger.debug(`${key}:`);
+    const value = config[key as keyof typeof config];
+    if (value && typeof value === "object") {
+      for (const subKey in value) {
+        logger.debug(`  ${subKey}: ${value[subKey as keyof typeof value]}`);
+      }
+    }
+  } else {
+    logger.debug(`${key}: ${config[key as keyof typeof config]}`);
+  }
+}

@@ -15,6 +15,10 @@ export const errorHandler: MiddlewareHandler = async (
     await next();
   } catch (error) {
     logger.error("Error caught by middleware", error);
+    console.error(
+      "Error details:",
+      error instanceof Error ? error.stack : String(error),
+    );
 
     // Handle ZodError
     if (error instanceof z.ZodError) {
@@ -60,12 +64,19 @@ export const errorHandler: MiddlewareHandler = async (
       return c.json(errorResponse);
     }
 
+    // Log additional debug information for unexpected errors
+    console.error("Unexpected error:", error);
+
     // Default to internal server error for unexpected errors
     c.status(500);
     return c.json({
       success: false,
       error: {
-        message: "An unexpected error occurred",
+        message: Deno.env.get("NODE_ENV") === "development"
+          ? `Internal Server Error: ${
+            error instanceof Error ? error.message : String(error)
+          }`
+          : "An unexpected error occurred",
         code: 500,
       },
     });

@@ -9,15 +9,15 @@ import { generateToken, verifyPassword, verifyToken } from "../utils/auth.ts";
 import { UnauthorizedError, ValidationError } from "../utils/error.ts";
 
 // Register a new user
-export async function register(userData: CreateUser) {
+export async function register(userData: CreateUser, role: string = "user") {
   // This will throw if email already exists
-  const user = await createUser(userData);
+  const user = await createUser(userData, role);
 
   // Generate token for new user
   const token = await generateToken({
     sub: user.id,
     email: user.email,
-    role: "user",
+    role: user.role,
   });
 
   // Return user data and token
@@ -54,7 +54,7 @@ export async function login(loginData: Login) {
   const token = await generateToken({
     sub: user.id,
     email: user.email,
-    role: "user",
+    role: user.role,
   });
 
   // Return user data and token
@@ -71,6 +71,10 @@ export async function validateToken(token: string) {
   try {
     // This will throw if token is invalid
     const payload = await verifyToken(token);
+
+    if (!payload || !payload.sub) {
+      throw new UnauthorizedError("Invalid token payload");
+    }
 
     // Get user
     const user = await getUserById(payload.sub);

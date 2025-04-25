@@ -20,6 +20,20 @@ export async function registerHandler(c: Context) {
   return createdResponse(c, result);
 }
 
+// Register a new admin user
+export async function registerAdminHandler(c: Context) {
+  const data = await c.req.json();
+
+  // Validate user data
+  const userData = validate(CreateUserSchema, data);
+
+  // Register admin user
+  const result = await register(userData, "admin");
+
+  // Return success response
+  return createdResponse(c, result);
+}
+
 // Login user
 export async function loginHandler(c: Context) {
   const data = await c.req.json();

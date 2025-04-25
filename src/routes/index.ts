@@ -5,6 +5,7 @@ import { logger as loggerMiddleware } from "hono/logger";
 import config from "../config/index.ts";
 import { errorHandler } from "../middlewares/error-handler.ts";
 import { requestLogger } from "../middlewares/logger.ts";
+import { apiKeyInfo, validateApiKey } from "../middlewares/api-key.ts";
 
 import authRoutes from "./auth.ts";
 import productRoutes from "./products.ts";
@@ -17,6 +18,7 @@ import promotionRoutes from "./promotions.ts";
 import notificationRoutes from "./notifications.ts";
 import posRoutes from "./pos.ts";
 import testOrdersRoutes from "./test-orders.ts";
+import apiKeyRoutes from "./api-keys.ts";
 
 // Create API router
 const api = new Hono();
@@ -36,6 +38,10 @@ api.use("*", loggerMiddleware());
 api.use("*", requestLogger);
 api.use("*", errorHandler);
 
+// API key validation (except for auth routes)
+api.use("*", validateApiKey);
+api.use("*", apiKeyInfo());
+
 // Health check endpoint
 api.get("/health", (c) => c.json({ status: "ok", environment: config.env }));
 
@@ -51,6 +57,7 @@ api.route("/loyalty", loyaltyRoutes);
 api.route("/promotions", promotionRoutes);
 api.route("/notifications", notificationRoutes);
 api.route("/pos", posRoutes);
+api.route("/api-keys", apiKeyRoutes);
 
 // Create a mock admin router for tests
 const adminRouter = new Hono();

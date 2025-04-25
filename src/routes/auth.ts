@@ -3,6 +3,7 @@ import {
   getCurrentUserHandler,
   loginHandler,
   refreshTokenHandler,
+  registerAdminHandler,
   registerHandler,
 } from "../controllers/auth-controller.ts";
 import { authenticate } from "../middlewares/auth.ts";
@@ -12,6 +13,7 @@ const router = new Hono();
 
 // Public routes
 router.post("/register", registerHandler);
+router.post("/register/admin", registerAdminHandler);
 router.post("/login", loginHandler);
 
 // Protected routes

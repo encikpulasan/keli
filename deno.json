@@ -10,8 +10,16 @@
     "zod": "npm:zod@^3.24.3"
   },
   "tasks": {
-    "start": "deno run --allow-env --allow-net --unstable-kv main.ts",
-    "test": "./test_endpoints.sh"
+    "start": "deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv main.ts",
+    "dev": "deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv --watch main.ts",
+    "test": "./test_endpoints.sh",
+    "update-postman": "deno run --allow-env --allow-read --allow-write scripts/update-postman-env.ts",
+    "test-server": "deno run --allow-net --allow-env scripts/test-server.ts",
+    "check-api-key": "deno run --allow-env --allow-read --allow-write --unstable-kv scripts/check-api-key.ts",
+    "start:dev": "NODE_ENV=development deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv --watch main.ts",
+    "start:staging": "NODE_ENV=staging deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv main.ts",
+    "start:prod": "NODE_ENV=production deno run --allow-env --allow-net --allow-read --allow-write --unstable-kv main.ts",
+    "env": "deno run --allow-env --allow-run scripts/run-environment.ts"
   },
   "compilerOptions": {
     "jsx": "precompile",
